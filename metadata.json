@@ -1,0 +1,6 @@
+{
+  "name": "Nabda Bulk Messaging Orchestrator",
+  "description": "A modern bulk messaging orchestration platform using the Nabda OTP API as the messaging provider. Features real-time campaign orchestration, sequential multi-instance balancing, CSV importing, queue processing, anti-duplication, idempotency, and full delivery analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

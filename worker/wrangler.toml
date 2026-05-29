@@ -1,0 +1,27 @@
+# Wrangler Configuration for Nabda Bulk Orchestrator Cloudflare Worker
+name = "nabda-bulk-orchestrator"
+main = "src/index.ts"
+compatibility_date = "2026-05-29"
+
+# 1. Cloudflare D1 SQL Server Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "nabda-orchestrator-db"
+database_id = "5183f982-ee3a-4f4e-a1fb-ff390bd192bb" # Replace with real wrangler d1 create ID
+
+# 2. Cloudflare Queues Binding
+[[queues.producers]]
+binding = "MESSAGE_QUEUE"
+queue = "nabda-delivery-queue"
+
+# 3. Queues Consumer Configuration
+[[queues.consumers]]
+queue = "nabda-delivery-queue"
+max_batch_size = 1 # Force sequential single-message execution to enforce pacing constraints
+max_batch_timeout = 1 # Wait up to 1s to flush buffer
+max_retries = 3
+
+# 4. Environment Variables Secrets (Bind via wrangler secrets put)
+[vars]
+# NODE_ENV = "production"
+# NABDA_WEBHOOK_SIGNATURE_KEY = "sha256_prod_secret_key"
